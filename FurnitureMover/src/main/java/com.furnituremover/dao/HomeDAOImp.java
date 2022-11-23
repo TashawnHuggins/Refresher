@@ -33,6 +33,7 @@ public class HomeDAOImp implements HomeDAOInt
         }
     }
 
+    //Displays all homes' name and size
     @Override
     public ArrayList<Home> displayAllHomes()
     {
@@ -46,6 +47,7 @@ public class HomeDAOImp implements HomeDAOInt
             while (rs.next()) {
                 Home home = new Home(
                         rs.getInt("home_id"),
+                        rs.getInt("furniture_id"),
                         rs.getString("home_name"),
                         rs.getInt("home_size")
                 );
@@ -59,24 +61,28 @@ public class HomeDAOImp implements HomeDAOInt
         }
     }
 
+    //Displays a home's furniture's name and size.
+    //Needs left join to connect home table to furniture table (through furniture_id)
     @Override
     public Home displaySingleHome(String homeName)
     {
         try (Connection connection = ConnectionDB.createConnection())
         {
-            String sql = "select * from home where home_name = ?";
+            String sql = "select home.home_name, furniture.furniture_name, furniture.furniture_size" +
+                    " from home left join furniture on home.furniture_id = furniture.furniture_id where home_name = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, homeName);
 
             ResultSet rs = ps.getResultSet();
             rs.next();
-            Home home = new Home(
-                    rs.getInt("home_id"),
+            Home SingleHome = new Home(
                     rs.getString("home_name"),
-                    rs.getInt("home_size")
+                    rs.getInt("furniture_id"),
+                    rs.getString("furniture_name"),
+                    rs.getInt("furniture_size")
             );
 
-            return home;
+            return SingleHome; //see names and sizes of all furnitures in a home
 
         } catch (SQLException e) {
             e.printStackTrace();

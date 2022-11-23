@@ -5,7 +5,7 @@ import com.furnituremover.utility.ConnectionDB;
 
 import java.sql.*;
 
-public class FurnitureDOAImp implements FurnitureDOAInt{
+public class FurnitureDAOImp implements FurnitureDAOInt {
 
     @Override
     public Furniture CreateFurniture(Furniture furniture)

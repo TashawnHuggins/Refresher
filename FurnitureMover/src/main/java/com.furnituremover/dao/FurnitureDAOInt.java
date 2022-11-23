@@ -2,7 +2,7 @@ package com.furnituremover.dao;
 
 import com.furnituremover.entitiy.Furniture;
 
-public interface FurnitureDOAInt
+public interface FurnitureDAOInt
 {
 
     Furniture CreateFurniture(Furniture furniture);
