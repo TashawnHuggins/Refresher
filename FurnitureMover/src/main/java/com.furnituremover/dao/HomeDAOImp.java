@@ -69,7 +69,7 @@ public class HomeDAOImp implements HomeDAOInt
         try (Connection connection = ConnectionDB.createConnection())
         {
             String sql = "select home.home_name, furniture.furniture_name, furniture.furniture_size" +
-                    " from home left join furniture on home.furniture_id = furniture.furniture_id where home_name = ?";
+                    " from home inner join furniture on home.furniture_id = furniture.furniture_id where home_name = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, homeName);
 

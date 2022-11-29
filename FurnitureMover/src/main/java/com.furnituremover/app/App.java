@@ -1,24 +1,40 @@
 package com.furnituremover.app;
 
+import com.furnituremover.dao.FurnitureDAOImp;
+import com.furnituremover.service.FurnitureServiceImp;
 import io.javalin.Javalin;
 
 public class App {
+    /*
+    Javalin is used to handle receiving HTTP requests and returning HTTP responses
+     */
     public static void main(String[] args)
     {
+        //This is the Javalin object; the create method will call the lambda directly.
         Javalin app = Javalin.create(config ->
         {
-//            config.enableCorsForAllOrigins();
-//            config.enableDevLogging();
+            //this is a lambda that set up some logging basics, and get around some cors issues
+            config.enableCorsForAllOrigins();
+            config.enableDevLogging();
         });
 
         //Furniture Controller
-//        FurnitureDAO furnitureDAO = new FurnitureDAO();
-//        FurnitureService furnitureService = new FurnitureService(furnitureDAO);
-//        FurnitureController furnitureController = new FurnitureController(furnitureService);
+        FurnitureController furnitureController = new FurnitureController();
 
-        // App Controller
-        //AppController appController = new AppController(app, furnitureController);
+        FurnitureDAOImp furnitureDAOImp = new FurnitureDAOImp();
+        FurnitureServiceImp furnitureServiceImp = new FurnitureServiceImp(furnitureDAOImp);
 
-        app.start(8000);
+
+         //App Controller
+        //AppController appController = new AppController();
+
+
+
+        //controllers are needed to handle the bottom (get, post, etc.) requests
+        app.post("/createFurniture", furnitureController.createFurniture);
+
+        app.get("/getfurnitureCount/{furniture_name}", furnitureController.selectFurnitureName);
+
+        app.start();
     }
 }
