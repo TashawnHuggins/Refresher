@@ -14,7 +14,7 @@ public class HomeDAOImp implements HomeDAOInt
     {
         try (Connection connection = ConnectionDB.createConnection())
         {
-            String sql = "insert into furniture values(default,? ,?)";
+            String sql = "insert into home values(default,,? ,?)";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, home.getHomeId());
             ps.setString(2, home.getHomeName());
@@ -33,7 +33,7 @@ public class HomeDAOImp implements HomeDAOInt
         }
     }
 
-    //Displays all homes' name and size
+    //Displays all homes' names and sizes
     @Override
     public ArrayList<Home> displayAllHomes()
     {
@@ -62,7 +62,6 @@ public class HomeDAOImp implements HomeDAOInt
     }
 
     //Displays a home's furniture's name and size.
-    //Needs left join to connect home table to furniture table (through furniture_id)
     @Override
     public Home displaySingleHome(String homeName)
     {

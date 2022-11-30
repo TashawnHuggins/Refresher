@@ -62,6 +62,22 @@ public class Home
         this.homeSize = homeSize;
     }
 
+    public String getFurnitureName() {
+        return furnitureName;
+    }
+
+    public void setFurnitureName(String furnitureName) {
+        this.furnitureName = furnitureName;
+    }
+
+    public int getFurnitureSize() {
+        return furnitureSize;
+    }
+
+    public void setFurnitureSize(int furnitureSize) {
+        this.furnitureSize = furnitureSize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

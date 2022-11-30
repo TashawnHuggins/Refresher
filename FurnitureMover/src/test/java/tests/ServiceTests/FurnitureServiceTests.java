@@ -15,7 +15,6 @@ public class FurnitureServiceTests
     @Test
     public void ServiceCreateFurniture()
     {
-     //Test furniture name with spaces, test blank inputs
         furniture = new Furniture(-1, "couch", "cerulean", 24);
         Furniture resultingFurniture = furnitureServiceImp.ServiceCreateFurniture(furniture);
         Assert.assertNotEquals(resultingFurniture.getFurnitureId(),-1);
