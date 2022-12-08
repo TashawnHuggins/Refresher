@@ -10,6 +10,4 @@ public interface HomeServiceInt
 
     ArrayList<Home> ServiceDisplayAllHomes();
 
-    Home ServiceDisplaySingleHome(String homeName);
-
 }

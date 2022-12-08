@@ -55,18 +55,4 @@ public class HomeController
         }
     };
 
-    //
-    public Handler displaySingleHome = ctx ->{
-        try{
-            String homeName = (ctx.pathParam("homeName"));
-            Home home = homeServiceImp.ServiceDisplaySingleHome(homeName);
-            Gson gson = new Gson();
-            String productJson = gson.toJson(home);
-            ctx.result(productJson);
-            ctx.status(200);
-        } catch (InvalidInput e){
-            ctx.result(e.getMessage());
-            ctx.status(404);
-        }
-    };
 }

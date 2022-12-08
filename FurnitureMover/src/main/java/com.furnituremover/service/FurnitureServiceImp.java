@@ -1,11 +1,13 @@
 package com.furnituremover.service;
 
-
 import com.furnituremover.dao.FurnitureDAOImp;
 import com.furnituremover.entitiy.Furniture;
+import com.furnituremover.entitiy.Home;
 import com.furnituremover.exceptions.EmptyValue;
 import com.furnituremover.exceptions.NegativeValue;
 import org.apache.commons.text.WordUtils;
+
+import java.util.ArrayList;
 
 import static java.sql.Types.NULL;
 
@@ -61,4 +63,16 @@ public class FurnitureServiceImp implements FurnitureServiceInt
         }
         return furnitureDAOImp.SelectFurnitureName(furnitureName);
     }
+
+    @Override
+    public ArrayList<Furniture> ServiceDisplayHomeFurniture(String homeName)
+    {
+        if(homeName.isEmpty())
+        {
+            throw new EmptyValue("Home name can't be empty");
+        }
+        return furnitureDAOImp.displayHomeFurniture(homeName);
+    }
+
+
 }

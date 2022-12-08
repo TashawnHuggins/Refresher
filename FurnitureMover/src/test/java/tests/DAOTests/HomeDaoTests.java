@@ -18,7 +18,7 @@ public class HomeDaoTests
     @Test
     public void createHome()
     {
-        Home newHome = new Home(-1,-1,"Castlevania", 1500);
+        Home newHome = new Home(-1,"Castlevania", 1500);
         Home resultingHome = HomeDAO.createHome(newHome);
         Assert.assertSame("Castlevania", resultingHome.getHomeName());
     }
@@ -28,13 +28,5 @@ public class HomeDaoTests
     {
         List<Home> result = HomeDAO.displayAllHomes();
         Assert.assertTrue(result.size() > 1);
-    }
-
-    //***************************************************************
-    @Test
-    public void displaySingleHome() //home name, furniture id, furniture name, furniture size, home size
-    {
-        Home result = HomeDAO.displaySingleHome("Greenacres");
-        Assert.assertEquals(result.getHomeName(), "Greenacres");
     }
 }

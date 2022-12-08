@@ -53,13 +53,6 @@ public class HomeServiceImp implements HomeServiceInt
         return homeDAOImp.displayAllHomes();
     }
 
-    @Override
-    public Home ServiceDisplaySingleHome(String homeName)
-    {
-        if(homeName.isEmpty())
-        {
-            throw new EmptyValue("Home name can't be empty");
-        }
-        return homeDAOImp.displaySingleHome(homeName);
-    }
+
+
 }

@@ -1,6 +1,9 @@
 package com.furnituremover.dao;
 
 import com.furnituremover.entitiy.Furniture;
+import com.furnituremover.entitiy.Home;
+
+import java.util.ArrayList;
 
 public interface FurnitureDAOInt
 {
@@ -9,5 +12,5 @@ public interface FurnitureDAOInt
 
     int SelectFurnitureName(String furnitureName);
 
-
+    ArrayList<Furniture> displayHomeFurniture(String homeName);
 }

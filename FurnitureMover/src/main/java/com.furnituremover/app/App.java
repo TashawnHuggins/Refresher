@@ -38,11 +38,11 @@ public class App {
         //Furniture
         app.post("/createFurniture", furnitureController.createFurniture);
         app.get("/selectFurnitureName/{furniture_name}", furnitureController.selectFurnitureName);
+        app.get("/displayHomeFurniture/{home_name}", furnitureController.displayHomeFurniture);
 
         //Home
         app.post("/createHome", homeController.createHome);
         app.get("/displayAllHomes", homeController.displayAllHomes);
-        app.get("/displaySingleHome/{home_name}", homeController.displaySingleHome);
 
         app.start();
     }

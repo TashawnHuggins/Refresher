@@ -2,8 +2,11 @@ package tests.DAOTests;
 
 import com.furnituremover.dao.FurnitureDAOImp;
 import com.furnituremover.entitiy.Furniture;
+import com.furnituremover.entitiy.Home;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 
 public class FurnitureDaoTests
@@ -13,7 +16,7 @@ public class FurnitureDaoTests
     @Test
     public void CreateFurniture()
     {
-        Furniture newFurniture = new Furniture(-1, "desk", "orange", 6);
+        Furniture newFurniture = new Furniture(-1, -1, "desk", "orange", 6);
         Furniture resultingFurniture = furnitureDAO.CreateFurniture(newFurniture);
         Assert.assertTrue(resultingFurniture.getFurnitureId()!=-1);
     }
@@ -37,9 +40,16 @@ public class FurnitureDaoTests
     public void SelectFurnitureNameNonexistent()
     {
         int testFurniture = furnitureDAO.SelectFurnitureName("jacuzzi");
-        Assert.assertEquals(testFurniture, 0);
+        Assert.assertTrue(testFurniture == 0);
     }
 
+    //***************************************************************
+    @Test
+    public void displayHomeFurniture() //home name, furniture id, furniture name, furniture size, home size
+    {
+        List<Furniture> result = furnitureDAO.displayHomeFurniture("Greenacres");
+        Assert.assertTrue(result.size() >= 1);
+    }
 
 
 

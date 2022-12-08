@@ -10,7 +10,7 @@ public interface HomeDAOInt
 
     ArrayList<Home> displayAllHomes();
 
-    Home displaySingleHome(String homeName);
+
 
 
 }

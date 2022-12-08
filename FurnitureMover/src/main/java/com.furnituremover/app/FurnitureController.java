@@ -2,6 +2,7 @@ package com.furnituremover.app;
 
 import com.furnituremover.dao.FurnitureDAOImp;
 import com.furnituremover.entitiy.Furniture;
+import com.furnituremover.entitiy.Home;
 import com.furnituremover.exceptions.EmptyValue;
 import com.furnituremover.exceptions.InvalidInput;
 import com.furnituremover.exceptions.NegativeValue;
@@ -10,6 +11,8 @@ import com.google.gson.Gson;
 import io.javalin.http.Handler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
 
 public class FurnitureController
 {
@@ -51,6 +54,21 @@ public class FurnitureController
             logger.info("Getting the furnitureName from the path parameter");
             String furnitureName = (ctx.pathParam("furnitureName"));
             int furniture = furnitureServiceImp.ServiceSelectFurnitureName(furnitureName);
+            Gson gson = new Gson();
+            String productJson = gson.toJson(furniture);
+            ctx.result(productJson);
+            ctx.status(200);
+        } catch (InvalidInput e){
+            ctx.result(e.getMessage());
+            ctx.status(404);
+        }
+    };
+
+    //
+    public Handler displayHomeFurniture = ctx ->{
+        try{
+            String homeName = (ctx.pathParam("homeName"));
+            ArrayList<Furniture> furniture = furnitureServiceImp.ServiceDisplayHomeFurniture(homeName);
             Gson gson = new Gson();
             String productJson = gson.toJson(furniture);
             ctx.result(productJson);
