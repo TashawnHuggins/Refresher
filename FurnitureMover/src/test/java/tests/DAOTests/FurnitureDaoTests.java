@@ -2,8 +2,9 @@ package tests.DAOTests;
 
 import com.furnituremover.dao.FurnitureDAOImp;
 import com.furnituremover.entitiy.Furniture;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 
 public class FurnitureDaoTests
 {
@@ -22,14 +23,21 @@ public class FurnitureDaoTests
     public void SelectFurnitureName()
     {
         int testFurniture = furnitureDAO.SelectFurnitureName("bar stool");
-        Assert.assertEquals(1, testFurniture);
+        Assert.assertEquals(testFurniture, 1);
+    }
+
+    @Test
+    public void SelectFurnitureNameSuccess2()
+    {
+        int testFurniture = furnitureDAO.SelectFurnitureName("Couch");
+        Assert.assertEquals( testFurniture, 3);
     }
 
     @Test
     public void SelectFurnitureNameNonexistent()
     {
         int testFurniture = furnitureDAO.SelectFurnitureName("jacuzzi");
-        Assert.assertEquals(0, testFurniture);
+        Assert.assertEquals(testFurniture, 0);
     }
 
 

@@ -16,11 +16,12 @@ public class Home
     {
     }
 
-    public Home(String homeName, int furnitureId, String furnitureName, int furnitureSize) {
+    public Home(String homeName, int furnitureId, String furnitureName, int furnitureSize, int homeSize) {
         this.homeName = homeName;
         this.furnitureId = furnitureId;
         this.furnitureName = furnitureName;
         this.furnitureSize = furnitureSize;
+        this.homeSize = homeSize;
     }
 
     public Home(int homeId, int furnitureId, String homeName, int homeSize) {

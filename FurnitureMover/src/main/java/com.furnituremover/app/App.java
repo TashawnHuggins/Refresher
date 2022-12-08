@@ -37,12 +37,12 @@ public class App {
         //controllers are needed to handle the bottom (get, post, etc.) requests
         //Furniture
         app.post("/createFurniture", furnitureController.createFurniture);
-        app.get("/selectFurnitureName/{furnitureName}", furnitureController.selectFurnitureName);
+        app.get("/selectFurnitureName/{furniture_name}", furnitureController.selectFurnitureName);
 
         //Home
         app.post("/createHome", homeController.createHome);
         app.get("/displayAllHomes", homeController.displayAllHomes);
-        app.get("/displaySingleHome/{homeName}", homeController.displaySingleHome);
+        app.get("/displaySingleHome/{home_name}", homeController.displaySingleHome);
 
         app.start();
     }

@@ -37,7 +37,7 @@ public class FurnitureDAOImp implements FurnitureDAOInt {
     {
         try (Connection connection = ConnectionDB.createConnection())
         {
-            String sql = "select count (furniture_name) from furniture where furnitureName = ?";
+            String sql = "select count (furniture_name) from furniture where furniture_name = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, furnitureName);
 

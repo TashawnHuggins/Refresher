@@ -27,9 +27,9 @@ public class FurnitureController
     public Handler createFurniture = ctx ->{
         try{
             logger.info("Starting process of getting furniture name and size from the user");
-            //Gson converts java objects to Json and vice versa
-            Gson gson = new Gson();
-            String body = ctx.body();
+            logger.info("Getting the body of the request");
+            String body = ctx.body(); //gets body of request
+            Gson gson = new Gson(); //Gson converts java objects to Json and vice versa
             Furniture furniture = gson.fromJson(body, Furniture.class);
             Furniture result =  furnitureServiceImp.ServiceCreateFurniture(furniture);
             logger.info("converting furniture object to JSON");

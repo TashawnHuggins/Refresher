@@ -14,9 +14,9 @@ public class HomeDAOImp implements HomeDAOInt
     {
         try (Connection connection = ConnectionDB.createConnection())
         {
-            String sql = "insert into home values(default,,? ,?)";
+            String sql = "insert into home values(? ,?)";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, home.getHomeId());
+            //ps.setInt(1, home.getHomeId());
             ps.setString(2, home.getHomeName());
             ps.setInt(3, home.getHomeSize());
             ps.execute();
@@ -24,7 +24,7 @@ public class HomeDAOImp implements HomeDAOInt
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
 
-            home.setHomeId(rs.getInt("home_id"));
+            //home.setHomeId(rs.getInt("home_id"));
             return home;
 
         } catch (SQLException e){
@@ -72,13 +72,14 @@ public class HomeDAOImp implements HomeDAOInt
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, homeName);
 
-            ResultSet rs = ps.getResultSet();
+            ResultSet rs = ps.getResultSet(); //home name, furniture id, furniture name, furniture size, home size
             rs.next();
             Home SingleHome = new Home(
                     rs.getString("home_name"),
                     rs.getInt("furniture_id"),
                     rs.getString("furniture_name"),
-                    rs.getInt("furniture_size")
+                    rs.getInt("furniture_size"),
+                    rs.getInt("home_size")
             );
 
             return SingleHome; //see names and sizes of all furnitures in a home

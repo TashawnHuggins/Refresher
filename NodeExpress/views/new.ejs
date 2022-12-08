@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Cat Profile</title>
+    <link rel="stylesheet" href="css/adopt.css">
+</head>
+<body>
+    
+    <form action="/api/v1/adopt" method="POST">
+        <label> Add a New Cat Profile
+            <br>
+            <h6>cat Name</h6>
+            <input type="text" catName="catName" value="<%= locals.catName %>" />
+            <br>
+            <h6>Sex</h6>
+            <input type="text" sex="sex" value="<%= locals.sex %>" />
+            <br>
+            <h6>Breed</h6>
+            <input type="text" breed="breed" value="<%= locals.breed %>" />
+            <br>
+            <h6>Color</h6>
+            <input type="text" color="coor" value="<%= locals.color %>" />
+            <br>
+            <h6>Age</h6>
+            <input type="text" age="age" value="<%= locals.age %>" />
+            <br>
+            <h6>Description</h6>
+            <input type="text" description="description" value="<%= locals.description %>" />
+            <br>
+        </label>
+        <button type="submit">Submit </button>
+    </form>
+    
+</body>
+</html>

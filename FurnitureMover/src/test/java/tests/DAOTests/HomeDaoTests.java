@@ -4,8 +4,9 @@ import com.furnituremover.dao.FurnitureDAOImp;
 import com.furnituremover.dao.HomeDAOImp;
 import com.furnituremover.entitiy.Furniture;
 import com.furnituremover.entitiy.Home;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,9 @@ public class HomeDaoTests
     @Test
     public void createHome()
     {
-        Home newHome = new Home(-1, -1, "Castlevannia", 1500);
+        Home newHome = new Home(-1,-1,"Castlevania", 1500);
         Home resultingHome = HomeDAO.createHome(newHome);
-        Assert.assertTrue(resultingHome.getHomeId()!=-1);
+        Assert.assertSame("Castlevania", resultingHome.getHomeName());
     }
 
     @Test
@@ -31,7 +32,7 @@ public class HomeDaoTests
 
     //***************************************************************
     @Test
-    public void displaySingleHome() //home name, furniture id, furniture name, furniture size
+    public void displaySingleHome() //home name, furniture id, furniture name, furniture size, home size
     {
         Home result = HomeDAO.displaySingleHome("Greenacres");
         Assert.assertEquals(result.getHomeName(), "Greenacres");

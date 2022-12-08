@@ -31,7 +31,7 @@ public class HomeServiceImp implements HomeServiceInt
         }
         else if(home.getHomeName().isEmpty())
         {
-            throw new EmptyValue("Home name can't be blank");
+            throw new EmptyValue("Home name can't be blank.");
         }
         else if(home.getHomeSize()==0)
         {

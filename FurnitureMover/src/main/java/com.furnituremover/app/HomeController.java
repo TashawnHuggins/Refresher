@@ -1,18 +1,19 @@
 package com.furnituremover.app;
 
-
-
 import com.furnituremover.dao.HomeDAOImp;
 import com.furnituremover.entitiy.Home;
 import com.furnituremover.exceptions.InvalidInput;
 import com.furnituremover.service.HomeServiceImp;
 import com.google.gson.Gson;
 import io.javalin.http.Handler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class HomeController
 {
+    public static Logger logger = LogManager.getLogger(FurnitureController.class);
 
     HomeServiceImp homeServiceImp;
 
@@ -23,13 +24,14 @@ public class HomeController
     }
 
     //Handler is a func. interface provided by Javelin
-    //
     public Handler createHome = ctx ->{
         try{
+            logger.info("Starting process of getting furniture name and size from the user");
             Gson gson = new Gson();
             String body = ctx.body();
             Home home = gson.fromJson(body, Home.class);
             Home result =  homeServiceImp.ServiceCreateHome(home);
+            logger.info("converting home object to JSON");
             String resultJson = gson.toJson(result);
             ctx.result(resultJson);
             ctx.status(200);

@@ -2,9 +2,11 @@ package tests.ServiceTests;
 
 import com.furnituremover.dao.FurnitureDAOImp;
 import com.furnituremover.entitiy.Furniture;
+import com.furnituremover.exceptions.EmptyValue;
 import com.furnituremover.service.FurnitureServiceImp;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 
 public class FurnitureServiceTests
 {
@@ -20,6 +22,34 @@ public class FurnitureServiceTests
         Assert.assertNotEquals(resultingFurniture.getFurnitureId(),-1);
     }
 
+    @Test(expectedExceptions = EmptyValue.class, expectedExceptionsMessageRegExp = "Furniture name can't be blank.")
+    public void ServiceCreateFurnitureBlankName()
+    {
+        furniture = new Furniture(-1, "", "cerulean", 24);
+        furnitureServiceImp.ServiceCreateFurniture(furniture);
+    }
+
+    @Test(expectedExceptions = EmptyValue.class, expectedExceptionsMessageRegExp = "Furniture color can't be blank.")
+    public void ServiceCreateFurnitureBlankColor()
+    {
+        furniture = new Furniture(-1, "couch", "", 24);
+        furnitureServiceImp.ServiceCreateFurniture(furniture);
+    }
+
+    @Test(expectedExceptions = EmptyValue.class, expectedExceptionsMessageRegExp = "Furniture size cannot be zero or negative!")
+    public void ServiceCreateFurnitureSizeZero()
+    {
+        furniture = new Furniture(-1, "couch", "cerulean", 0);
+        furnitureServiceImp.ServiceCreateFurniture(furniture);
+    }
+
+    @Test(expectedExceptions = EmptyValue.class, expectedExceptionsMessageRegExp = "Furniture size cannot be zero or negative!")
+    public void ServiceCreateFurnitureSizeNegative()
+    {
+        furniture = new Furniture(-1, "couch", "cerulean", -1);
+        furnitureServiceImp.ServiceCreateFurniture(furniture);
+    }
+
     @Test
     public void ServiceSelectFurnitureNameNonexistent()
     {
@@ -31,7 +61,7 @@ public class FurnitureServiceTests
     public void ServiceSelectFurnitureNamePositive()
     {
         int resultingFurniture = furnitureServiceImp.ServiceSelectFurnitureName("bar stool");
-        Assert.assertEquals(resultingFurniture, 0);
+        Assert.assertEquals(resultingFurniture, 1);
     }
 
 

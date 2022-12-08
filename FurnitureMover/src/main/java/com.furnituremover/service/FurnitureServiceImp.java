@@ -32,16 +32,16 @@ public class FurnitureServiceImp implements FurnitureServiceInt
         }
         else if(furniture.getFurnitureName().isEmpty())
         {
-            throw new EmptyValue("Furniture name can't be blank");
+            throw new EmptyValue("Furniture name can't be blank.");
         }
         else if(furniture.getFurnitureColor().isEmpty())
         {
-            throw new EmptyValue("Furniture color can't be blank");
+            throw new EmptyValue("Furniture color can't be blank.");
         }
-        else if(furniture.getFurnitureSize() == NULL)
-        {
-            throw new EmptyValue("Furniture size can't be null");
-        }
+//        else if(furniture.getFurnitureSize() == NULL)
+//        {
+//            throw new EmptyValue("Furniture size can't be null.");
+//        }
         return furnitureDAOImp.CreateFurniture(furniture);
 
     }
